@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
-from llama_utils import analyze_issue_with_llama
-from github_api import comment_on_issue
+from app.llama_utils import analyze_issue_with_llama
+from app.github_api import comment_on_issue
 
 app = FastAPI()
 
@@ -33,3 +33,6 @@ async def github_webhook(request: Request):
         "llama_response": llama_response
     }
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
