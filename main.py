@@ -4,6 +4,10 @@ from app.github_api import comment_on_issue
 
 app = FastAPI()
 
+@app.get("/")
+async def read_root():
+    return {"message": "API is running"}
+
 @app.post("/webhook")
 async def github_webhook(request: Request):
     payload = await request.json()
