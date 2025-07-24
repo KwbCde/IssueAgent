@@ -115,7 +115,7 @@ I created IssueAgent to deepen my understanding of backend API's webhooks, and d
 - FastAPI backend development and webhook handling
 - Integration with OpenAI-compatible LLM API's
 - GitHub webhooks and automation
-- Secure environmet variable management
+- Secure environment variable management
 - Deployment on cloud platforms
 
 ## License
