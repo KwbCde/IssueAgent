@@ -1,6 +1,9 @@
+import os
 from fastapi import FastAPI, Request
 from app.llm_utils import analyze_issue_with_llm
 from app.github_api import comment_on_issue
+
+bot_username = os.getenv("BOT_USERNAME")
 
 app = FastAPI()
 
@@ -45,6 +48,10 @@ async def github_webhook(request: Request):
 
     elif event == "issue_comment" and payload.get("action") == "created":
         comment = payload.get("comment") or {}
+        commenter = comment.get("user", {}).get("login")
+        if commenter == bot_username:
+            return {"status": "ignored", "reason": "Comment by bot, ignoring to prevent loop"}
+
         issue = payload.get("issue") or {}
         repo = payload.get("repository") or {}
         comment_body = comment.get("body")
