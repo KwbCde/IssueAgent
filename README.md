@@ -2,7 +2,7 @@
 ---
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)]
+[![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 
 ## IssueAgent
 
@@ -146,13 +146,14 @@ The IssueAgent GitHub App is live and available for installation:
 
 [Install IssueAgent on Your Repo](https://github.com/apps/issueagent)
 
-Once installed, it will automatically reply to new issues and comments using GPT-powered responses.
+Once installed, it will automatically reply to new issues and comments using an LLM.
 
 ---
 
 ## Project Structure
 
-```IssueAgent/
+```text
+IssueAgent/
 │
 ├── app/
 │   ├── __init__.py
