@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from app.llm_utils import analyze_issue_with_llama
+from app.llm_utils import analyze_issue_with_llm
 from app.github_api import comment_on_issue
 
 app = FastAPI()
@@ -23,7 +23,7 @@ async def github_webhook(request: Request):
     owner = repo.get("owner", {}).get("login")
     repo_name = repo.get("name")
 
-    llm_response = analyze_issue_with_llama(title, body)
+    llm_response = analyze_issue_with_llm(title, body)
 
     comment_on_issue(owner, repo_name, issue_number, llm_response)
 
