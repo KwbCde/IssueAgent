@@ -6,7 +6,7 @@
 
 ## IssueAgent
 
-**IssueAgent** is a GitHub App backend built with FastAPI that listens for issue related events, analyzes them using an LLM (via OpenAI API), and posts context-aware comments back on GitHub issues. It’s designed for full automation and secure deployment using best practices.
+**IssueAgent** is a GitHub App backend built with FastAPI that listens for issue related events then analyzes them using an LLM (via OpenAI API) and posts context-aware comments back on GitHub issues. It’s designed for full automation and secure deployment using best practices.
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## Why Use IssueAgent?
 
-Managing GitHub issues can be time consuming especially for busy maintainers and teams. IssueAgent automates issue triaging and responses using AI, helping you:
+Managing GitHub issues can be time consuming especially for busy maintainers and teams. IssueAgent automates issue triaging and responses using AI helping you:
 
 - Save time by automatically providing relevant suggestions and guidance
 - Improve issue response quality and consistency
@@ -61,35 +61,38 @@ By automating routine interactions, IssueAgent lets you focus on coding and impo
 1. Clone the repo:
 
    
-``bash
+```bash
    git clone https://github.com/KwbCde/IssueAgent.git
    cd IssueAgent
-
+   ```
+   
 
 2. Create a virtual environment:
 
    
-bash
+```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-
+   ```
 
 3. Install dependencies:
 
    
-bash
+```bash
    pip install -r requirements.txt
+```
 
 
 4. Create a .env file in the project root:
 
    
-dotenv
+```dotenv
    GITHUB_APP_ID=your_github_app_id
    GITHUB_PRIVATE_KEY=your_github_private_key
    GITHUB_WEBHOOK_SECRET=your_webhook_secret
    OPENAI_API_KEY=your_openai_api_key
    OPENAI_BASE_URL=https://api.openai.com/v1  # Optional if using default
+```
 
 
 ---
@@ -98,16 +101,18 @@ dotenv
 
 Start the server:
 
-bash
+```bash
 uvicorn main:app --reload
+```
 
 
 The server will run at http://localhost:8000.
 
-To test GitHub webhook events locally, consider using [ngrok](https://ngrok.com/):
+To test GitHub webhook events locally consider using [ngrok](https://ngrok.com/):
 
-bash
+```bash
 ngrok http 8000
+```
 
 
 ---
@@ -139,7 +144,7 @@ After installation on a repository, the app will automatically respond to new is
 ## Try It Out
 The IssueAgent GitHub App is live and available for installation:
 
-➡ [Install IssueAgent on Your Repo](https://github.com/apps/issueagent)
+[Install IssueAgent on Your Repo](https://github.com/apps/issueagent)
 
 Once installed, it will automatically reply to new issues and comments using GPT-powered responses.
 
@@ -147,7 +152,7 @@ Once installed, it will automatically reply to new issues and comments using GPT
 
 ## Project Structure
 
-IssueAgent/
+```IssueAgent/
 │
 ├── app/
 │   ├── __init__.py
@@ -158,13 +163,13 @@ IssueAgent/
 ├── requirements.txt
 ├── .env                    # Environment variables (not committed)
 └── README.md
-
+```
 
 ---
 
 ## Learning Goals
 
-I created **IssueAgent** to deepen my understanding of backend APIs, GitHub automation, and AI-assisted development tools. Through this project, I gained practical experience with:
+I created **IssueAgent** to deepen my understanding of backend APIs, GitHub automation, and AI-assisted development tools. Through this project I gained practical experience with:
 
 * Structuring a FastAPI application for production use
 * Secure webhook verification and GitHub App authentication (JWT + installation tokens)
