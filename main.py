@@ -4,9 +4,7 @@ from app.github_api import comment_on_issue
 
 app = FastAPI()
 
-@app.get("/")
-async def read_root():
-    return {"message": "API is running"}
+conversation_history = {}
 
 @app.post("/webhook")
 async def github_webhook(request: Request):
@@ -15,20 +13,35 @@ async def github_webhook(request: Request):
 
     if action != "opened":
         return {"status": "ignored", "reason": "Not a new issue"}
-    issue = payload.get("issue" or {})
-    repo = payload.get("repository" or {})
+
+    issue = payload.get("issue") or {}
+    repo = payload.get("repository") or {}
     title = issue.get("title")
     body = issue.get("body")
     issue_number = issue.get("number")
     owner = repo.get("owner", {}).get("login")
     repo_name = repo.get("name")
 
-    llm_response = analyze_issue_with_llm(title, body)
+    key = f"{owner}/{repo_name}#{issue_number}"
+
+    if key not in conversation_history:
+        conversation_history[key] = [
+            {"role": "system", "content": "You are a helpful GitHub assistant."}
+        ]
+
+    conversation_history[key].append({
+        "role": "user",
+        "content": f"Github issue title: {title}\nIssue description: {body}\nWrite a helpful comment to respond to this issue."
+    })
+
+    llm_response = analyze_issue_with_llm(conversation_history[key])
+
+    conversation_history[key].append({
+        "role": "assistant",
+        "content": llm_response
+    })
 
     comment_on_issue(owner, repo_name, issue_number, llm_response)
-
-    print("LLM Response:\n", llm_response)
-
 
     return {
         "status": "ok",
