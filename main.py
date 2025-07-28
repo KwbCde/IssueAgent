@@ -23,16 +23,16 @@ async def github_webhook(request: Request):
     owner = repo.get("owner", {}).get("login")
     repo_name = repo.get("name")
 
-    llama_response = analyze_issue_with_llama(title, body)
+    llm_response = analyze_issue_with_llama(title, body)
 
-    comment_on_issue(owner, repo_name, issue_number, llama_response)
+    comment_on_issue(owner, repo_name, issue_number, llm_response)
 
-    print("LLaMA Response:\n", llama_response)
+    print("LLM Response:\n", llm_response)
 
 
     return {
         "status": "ok",
         "action": action,
         "title": title,
-        "llama_response": llama_response
+        "llm_response": llm_response
     }
