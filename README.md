@@ -6,9 +6,20 @@
 
 ## IssueAgent
 
-**IssueAgent** is a GitHub App backend built with FastAPI that listens for issue related events then analyzes them using an LLM (via OpenAI API) and posts context-aware comments back on GitHub issues. It’s designed for full automation and secure deployment using best practices.
+**IssueAgent** is a GitHub App backend built with FastAPI that listens for issue events then analyzes them using an LLM (via OpenAI) and posts context relevant comments back on GitHub issues. It’s designed for full automation and secure deployment using best practices.
 
 ---
+
+
+## Try It Out
+The IssueAgent GitHub App is live and available for installation:
+
+[Install IssueAgent on Your Repo](https://github.com/apps/issueagent)
+
+Once installed it will automatically reply to new issues and comments using an LLM.
+
+---
+
 
 ## Features
 
@@ -54,7 +65,7 @@ By automating routine interactions, IssueAgent lets you focus on coding and impo
 * Python 3.11+
 * GitHub account and GitHub App created
 * OpenAI API key (or compatible API provider)
-* Railway (or similar platform) for deployment
+* Railway (or any cloud platform) for deployment
 
 ### Installation
 
@@ -138,15 +149,6 @@ Your /webhook endpoint will then be available for GitHub to call.
 5. Generate and upload your private key to the .env
 
 After installation on a repository, the app will automatically respond to new issues and comments.
-
----
-
-## Try It Out
-The IssueAgent GitHub App is live and available for installation:
-
-[Install IssueAgent on Your Repo](https://github.com/apps/issueagent)
-
-Once installed, it will automatically reply to new issues and comments using an LLM.
 
 ---
 
